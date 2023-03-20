@@ -45,11 +45,13 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'gender' => 'required|string',
+            'password' => 'required|string|min:8',
+            'confirm_password' => 'required|string|min:8',
+            'gender' => 'required|in:female,male,Female,Male',
+            // 'gender.in' => 'The gender field must be either female or male.',
             'dob' => 'required|string',
-            'bio' => 'string',
-            'profile_image' => 'string',
+            // 'bio' => 'string',
+            // 'profile_image' => 'string',
         ]);
 
         $user = User::create([
@@ -58,8 +60,8 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'gender' => $request->gender,
             'dob' => $request->dob,
-            'bio' => $request->bio,
-            'profile_image' => $request->profile_image,
+            // 'bio' => $request->bio,
+            // 'profile_image' => $request->profile_image,
         ]);
 
         $token = Auth::login($user);

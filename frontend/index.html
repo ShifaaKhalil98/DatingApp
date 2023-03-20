@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
+    <link href="style.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="header">
+        <h1>Find your soulmate</h1>
+    </div>
+    <div id="login_form" class="login">
+        <h1>Login</h1>
+        <form class="flex-column">
+            <div class="text-field">
+                <input type="email" name="email" id="email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="text-field">
+                <input type="password" name="password" id="password" required>
+                <label for="password">Password</label>
+            </div>
+            <button id="login">Login</button>
+            <p id="goto_signup" class="purple">create account &#8594</p>
+        </form>
+      </div>
+      <div id="signup_form" class="signup">
+        <h1>Signup</h1>
+        <form class="flex-column">
+          <div class="text-field">
+            <input type="text"name="name" id="name" required>
+            <label for="name">Name</label>
+          </div>
+          <div class="text-field">
+            <input type="text"name="gender" id="gender" required>
+            <label for="gender">Male or Female?</label>
+          </div>
+          <div class="text-field">
+            <input type="date" name="dob" id="dob" required>
+          </div>
+          <div class="text-field">
+            <input type="email"name="email" id="email" required>
+            <label for="email">Email</label>
+          </div>
+          <div class="text-field">
+            <input type="password" name="password" id="password" required>
+            <label for="password">Password</label>
+          </div>
+          <div class="text-field">
+            <input type="password" name="confirm_password" id="confirm_password" required>
+            <label for="confirm_password">Confirm password</label>
+          </div>
+            <button id="signup">Signup</button>
+            <p id="goto_login" class="purple">&#8592 already have an account?</p>
+        </form>
+      </div>
+      <script src="js/script.js"></script>
+  </body>
+</html>

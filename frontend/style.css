@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: url(bg2.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+:root {
+  --purple: #653fa0;
+}
+.purple {
+  color: var(--purple);
+}
+.flexbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  color: white;
+  text-align: center;
+}
+.login,
+.signup {
+  color: white;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.4);
+  width: 35%;
+  margin: 30px auto;
+  padding: 60px 0;
+}
+button {
+  background-color: var(--purple);
+  color: white;
+  border: none;
+  width: 25%;
+  padding: 5px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+.login .flex-column,
+.signup .flex-column {
+  align-items: center;
+  justify-content: space-evenly;
+}
+.login p,
+.signup p {
+  font-size: 20px;
+  cursor: pointer;
+}
+.text-field {
+  position: relative;
+  margin-top: 30px;
+}
+input {
+  width: 90%;
+  border: none;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+input:focus {
+  border: 3px solid var(--purple);
+}
+
+label {
+  color: #999;
+  position: absolute;
+  pointer-events: none;
+  left: 10px;
+  top: 10px;
+  transition: 0.2s;
+}
+input:focus ~ label,
+input:valid ~ label {
+  top: -10px;
+  left: 15px;
+  font-size: small;
+  color: var(--purple);
+  background-color: white;
+  padding: 0 5px 0 5px;
+}

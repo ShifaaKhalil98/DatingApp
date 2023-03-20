@@ -14,11 +14,28 @@ class UserController extends Controller
             'photo' => 'required|image|max:2048',
         ]);
 
-        $path = $request->file('photo')->store('public');
-        $user->photo_path = $path;
-        $user->save();
+        $auth_user = Auth::user();
 
-        return redirect()->route('users.profile', ['user' => $user->id])
-        ->with('addPhotoUrl', $addPhotoUrl);
+        $add_photo_url = route('users.add_photo', ['user' => $user->id]);
+
+        $path = $request->file('photo')->store('public');
+        $auth_user->photo_path = $path;
+        $auth_user->save();
+
+        return redirect()->back()->with('add_photo_url', $add_photo_url);
+
+    
     }
+    // public function edit_info(Request $request, $user)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string',
+    //         'dob' => 'required',
+    //     ])
+
+    //     $auth_user = Auth::user();
+
+
+    // }
+
 }
