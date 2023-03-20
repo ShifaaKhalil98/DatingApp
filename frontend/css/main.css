@@ -72,12 +72,13 @@ html,
   display: flex;
   justify-content: center;
   column-gap: 25%;
+  margin-top: 30px;
 }
 .user-info {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  row-gap: 30px;
+  row-gap: 25px;
 }
 .user-profile {
 }
@@ -92,7 +93,23 @@ html,
 #add_to_favorites {
   height: 50px;
 }
+#block {
+  height: 35px;
+}
 .user-bio {
   margin: 20px 20%;
   font-size: 20px;
+}
+.user-photos {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.user-page button {
+  background-color: transparent;
+  border: white;
+  color: white;
+  display: block;
+  margin: 10px auto;
+  font-size: 15px;
 }
