@@ -35,7 +35,7 @@ function login(event) {
       console.log(response);
       if ((response.data.status = "success")) {
         alert("logged in successfully");
-        window.location.href = "./main.html";
+        window.location.href = "../main.html";
       }
     })
     .catch((error) => {
