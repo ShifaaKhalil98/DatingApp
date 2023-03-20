@@ -3,10 +3,6 @@ html,
   margin: 0;
   padding: 0;
 }
-/* body {
-  margin: 0;
-  padding: 0;
-} */
 :root {
   --purple: #8c378c;
 }
@@ -64,4 +60,39 @@ html,
   color: white;
   flex-basis: 21%;
   background-color: var(--purple);
+}
+.user-page {
+  padding: 15px 0;
+  color: white;
+  width: 60%;
+  margin: 50px auto;
+  background-color: var(--purple);
+}
+.user-main {
+  display: flex;
+  justify-content: center;
+  column-gap: 25%;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  row-gap: 30px;
+}
+.user-profile {
+}
+.user-contact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#chat {
+  height: 40px;
+}
+#add_to_favorites {
+  height: 50px;
+}
+.user-bio {
+  margin: 20px 20%;
+  font-size: 20px;
 }
