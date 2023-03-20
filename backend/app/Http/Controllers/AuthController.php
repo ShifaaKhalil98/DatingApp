@@ -1,4 +1,4 @@
-<php
+<?php
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,12 +46,20 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'gender' => 'required|string',
+            'dob' => 'required|string',
+            'bio' => 'string',
+            'profile_image' => 'string',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'bio' => $request->bio,
+            'profile_image' => $request->profile_image,
         ]);
 
         $token = Auth::login($user);
@@ -88,3 +96,4 @@ class AuthController extends Controller
     }
 
 }
+?>
