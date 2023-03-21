@@ -26,17 +26,6 @@ class UserController extends Controller
 
     
     }
-    // public function edit_info(Request $request, $user)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string',
-    //         'dob' => 'required',
-    //     ])
-
-    //     $auth_user = Auth::user();
-
-
-    // }
    
     public function update(Request $request)
     {
@@ -87,4 +76,42 @@ class UserController extends Controller
     return $users;
     }
 
+    public function add_to_favorites($user_id, $liked_user_id){
+        $user = User::find($user_id);
+        $liked_user=User::find($liked_user_id);
+        
+        if ($user && $liked_user) {
+    
+            $likes = new likes;
+            $likes->user_id = $user->id;
+            $likes->liked_user_id = $liked_user->id;
+
+            $likes->save();
+  
+            return redirect('');
+        } else {
+
+            return redirect('');
+        }
+    }
+        
+    public function add_to_blocks($user_id, $blocked_user_id){
+        $user = User::find($user_id);
+        $blocked_user=User::find($blocked_user_id);
+        
+        if ($user && $blocked_user) {
+    
+            $blocks = new blocks;
+            $blocks->user_id = $user->id;
+            $blocks->blocked_user_id = $blocked_user->id;
+
+            $blocks->save();
+  
+            return redirect('');
+        } else {
+
+            return redirect('');
+        }
+    }
+    
 }

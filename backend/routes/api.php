@@ -29,6 +29,9 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/users', 'users');
     Route::get('/filter_by_age', 'filter_by_age');
     Route::get('/search', 'search');
+    Route::post('/refresh', 'refresh');
+    Route::post('/add_to_favorites', 'add_to_favorites');
+    Route::post('/add_to_blocks', 'add_to_blocks');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

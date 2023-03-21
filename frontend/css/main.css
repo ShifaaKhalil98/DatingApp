@@ -35,11 +35,17 @@ html,
 #logo {
   height: 100px;
 }
-#notification {
+#favorites,
+#add_to_favorites {
+  height: 50px;
+}
+#notification,
+#chat {
   height: 40px;
 }
-#favorites {
-  height: 50px;
+#block,
+#remove_from_favorites {
+  height: 35px;
 }
 #profile {
   height: 30px;
@@ -86,15 +92,6 @@ html,
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-#chat {
-  height: 40px;
-}
-#add_to_favorites {
-  height: 50px;
-}
-#block {
-  height: 35px;
 }
 .user-bio {
   margin: 20px 20%;

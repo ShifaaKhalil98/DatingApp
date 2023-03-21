@@ -48,10 +48,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:8',
             'confirm_password' => 'required|string|min:8',
             'gender' => 'required|in:female,male,Female,Male',
-            // 'gender.in' => 'The gender field must be either female or male.',
             'dob' => 'required|string',
-            // 'bio' => 'string',
-            // 'profile_image' => 'string',
         ]);
 
         $user = User::create([
@@ -60,9 +57,20 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'gender' => $request->gender,
             'dob' => $request->dob,
-            // 'bio' => $request->bio,
-            // 'profile_image' => $request->profile_image,
         ]);
+
+        // if ($user) {
+
+        //     $users = new users;
+        //     $users->user_id = $user->id;
+        //     $users->save();
+            
+        //     Mail::to($user->email)->send(new ConfirmationEmail($user));
+
+        //     return redirect('/success');
+        // } else {
+        //     return redirect('/error');
+        // }
 
         $token = Auth::login($user);
         return response()->json([
