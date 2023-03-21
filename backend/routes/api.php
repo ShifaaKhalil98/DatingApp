@@ -17,17 +17,18 @@ use App\Http\Controllers\UserController;
 */
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
+    Route::post('/login', 'login');
+    Route::post('/register', 'register');
+    Route::post('/logout', 'logout');
+    Route::post('/refresh', 'refresh');
 });
 
 Route::controller(UserController::class)->group(function () {
     Route::post('/users/{user}/add_photo', 'add_photo');
     Route::patch('/users/{user}/update', 'update');
-    Route::get('users', 'users');
-    Route::get('filter_by_age', 'filter_by_age');
+    Route::get('/users', 'users');
+    Route::get('/filter_by_age', 'filter_by_age');
+    Route::get('/search', 'search');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

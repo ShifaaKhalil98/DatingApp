@@ -76,4 +76,15 @@ class UserController extends Controller
     return $users;
     }
 
+    public function search(Request $request)
+    {
+    $searchQuery = $request->input('q');
+
+    $users = User::when($searchQuery, function ($query, $searchQuery) {
+        return $query->where('name', 'like', '%'.$searchQuery.'%');
+    })->get();
+
+    return $users;
+    }
+
 }
