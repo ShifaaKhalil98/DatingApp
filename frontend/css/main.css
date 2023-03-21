@@ -110,3 +110,32 @@ html,
   margin: 10px auto;
   font-size: 15px;
 }
+@media (max-width: 768px) {
+  #logo {
+    height: 70px;
+  }
+  #filter {
+    font-size: 1.2em;
+  }
+  .search-container input {
+    height: 50%;
+    padding: 1px;
+    width: 100%;
+  }
+  .user-main {
+    flex-direction: column;
+  }
+  .user-info {
+    padding: 0 25px;
+  }
+  .user-page {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .user-photos {
+    flex-direction: column;
+  }
+}
