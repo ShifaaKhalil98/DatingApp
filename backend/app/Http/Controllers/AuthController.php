@@ -42,6 +42,7 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
+       
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -50,7 +51,7 @@ class AuthController extends Controller
             'gender' => 'required|in:female,male,Female,Male',
             'dob' => 'required|string',
         ]);
-
+   
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -58,12 +59,13 @@ class AuthController extends Controller
             'gender' => $request->gender,
             'dob' => $request->dob,
         ]);
-
         if ($user) {
-  
+
             Mail::to($user->email)->send(new ConfirmationEmail($user));
 
             $token = Auth::login($user);
+
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'User created successfully',
@@ -74,6 +76,7 @@ class AuthController extends Controller
                 ]
             ]);
         }
+        return "failure";
     }
 
     public function logout()

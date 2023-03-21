@@ -39,7 +39,6 @@ class UserController extends Controller
             'profile_image' => 'string',
         ]);
    
-        $user = User::find($user->id);
         if($user){
             $user->name = $request->name;
             $user->gender = $request->gender;
