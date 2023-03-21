@@ -37,5 +37,43 @@ class UserController extends Controller
 
 
     // }
+   
+    public function update(Request $request)
+    {
+        $user = auth()->user();
+    
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'gender' => 'required|in:female,male,Female,Male',
+            'dob' => 'required|string',
+            'bio' => 'string',
+            'profile_image' => 'string',
+        ]);
+   
+        $user->update([
+            'name' => $request->name,
+            'gender' => $request->gender,
+            'dob' => $request->dob,
+            'bio' => $request->bio,
+            'profile_image' => $request->profile_image,
+        ]);
+    
+        return redirect()->back()->with('success', 'User information updated successfully.');
+    }
+        
+    public function users() {
+        $users = App\Models\User::all();
+        return $users;
+    }
+
+    public function filter_by_age(Request $request)
+    {
+    $minAge = $request->input('minAge', 0);
+    $maxAge = $request->input('maxAge', 100);
+
+    $users = User::whereBetween('age', [$minAge, $maxAge])->get();
+
+    return $users;
+    }
 
 }
