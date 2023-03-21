@@ -35,7 +35,7 @@ function login(event) {
       console.log(response);
       if ((response.data.status = "success")) {
         alert("logged in successfully");
-        window.location.href = "../main.html";
+        window.location.href = "./main.html";
       }
     })
     .catch((error) => {
@@ -47,6 +47,7 @@ function signup(event) {
 
   const name = document.getElementById("name").value;
   const dob = document.getElementById("dob").value;
+  const gender = document.getElementById("gender").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const confirm_password = document.getElementById("confirm_password").value;
@@ -55,6 +56,7 @@ function signup(event) {
     .post("http://127.0.0.1:8000/api/register", {
       name: name,
       dob: dob,
+      gender: gender,
       email: email,
       password: password,
       confirm_password: confirm_password,

@@ -61,10 +61,9 @@ class AuthController extends Controller
         ]);
         if ($user) {
 
-            Mail::to($user->email)->send(new ConfirmationEmail($user));
+            // Mail::to($user->email)->send(new ConfirmationEmail($user));
 
             $token = Auth::login($user);
-
 
             return response()->json([
                 'status' => 'success',
