@@ -25,13 +25,14 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(UserController::class)->group(function () {
     Route::post('/users/{user}/add_photo', 'add_photo');
-    Route::patch('/users/{user}/update', 'update');
-    Route::get('/users', 'users');
-    Route::get('/filter_by_age', 'filter_by_age');
-    Route::get('/search', 'search');
+    Route::post('/update', 'update');
+    Route::post('/users', 'users');
+    Route::post('/filter_by_age', 'filter_by_age');
+    Route::post('/search', 'search');
     Route::post('/refresh', 'refresh');
     Route::post('/add_to_favorites', 'add_to_favorites');
     Route::post('/add_to_blocks', 'add_to_blocks');
+    Route::post('/age', 'age');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

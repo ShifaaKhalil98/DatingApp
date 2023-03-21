@@ -59,29 +59,21 @@ class AuthController extends Controller
             'dob' => $request->dob,
         ]);
 
-        // if ($user) {
+        if ($user) {
+  
+            Mail::to($user->email)->send(new ConfirmationEmail($user));
 
-        //     $users = new users;
-        //     $users->user_id = $user->id;
-        //     $users->save();
-            
-        //     Mail::to($user->email)->send(new ConfirmationEmail($user));
-
-        //     return redirect('/success');
-        // } else {
-        //     return redirect('/error');
-        // }
-
-        $token = Auth::login($user);
-        return response()->json([
-            'status' => 'success',
-            'message' => 'User created successfully',
-            'user' => $user,
-            'authorisation' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+            $token = Auth::login($user);
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User created successfully',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ]);
+        }
     }
 
     public function logout()

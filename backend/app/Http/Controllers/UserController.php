@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 // use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\Models\Likes;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -23,8 +25,6 @@ class UserController extends Controller
         $auth_user->save();
 
         return redirect()->back()->with('add_photo_url', $add_photo_url);
-
-    
     }
    
     public function update(Request $request)
@@ -39,28 +39,55 @@ class UserController extends Controller
             'profile_image' => 'string',
         ]);
    
-        $user->update([
-            'name' => $request->name,
-            'gender' => $request->gender,
-            'dob' => $request->dob,
-            'bio' => $request->bio,
-            'profile_image' => $request->profile_image,
-        ]);
+        $user = User::find($user->id);
+        if($user){
+            $user->name = $request->name;
+            $user->gender = $request->gender;
+            $user->dob = $request->dob;
+            $user->bio = $request->bio;
+            $user->profile_image = $request->profile_image;
     
-        return redirect()->back()->with('success', 'User information updated successfully.');
+            $user->save();
+    
+            return $user;
+        }
+        else{
+            return "failure";
+        }
     }
-        
+
     public function users() {
-        $users = App\Models\User::all();
+        $user = auth()->user();
+
+        if($user->gender=='female') $users = User::where('gender', 'male')->get();
+        else $users = User::where('gender', 'female')->get();
+
         return $users;
+    }
+
+    public function age($dob)
+    {
+        $dob = Carbon::parse($dob);
+        $now = Carbon::now();
+        $age = $dob->diffInYears($now);
+
+        return $age;
     }
 
     public function filter_by_age(Request $request)
     {
-    $minAge = $request->input('minAge', 0);
-    $maxAge = $request->input('maxAge', 100);
+        $users=$this->users();
+        $minAge = $request->input('min_age', 0);
+        $maxAge = $request->input('max_age', 100);
 
-    $users = User::whereBetween('age', [$minAge, $maxAge])->get();
+    $users = $users->map(function ($user) {
+        $user->age = $this->age($user->dob);
+        return $user;
+    });
+
+    $users = $users->filter(function ($user) use ($minAge, $maxAge) {
+        return $user->age >= $minAge && $user->age <= $maxAge;
+    });
 
     return $users;
     }
@@ -76,24 +103,25 @@ class UserController extends Controller
     return $users;
     }
 
-    public function add_to_favorites($user_id, $liked_user_id){
-        $user = User::find($user_id);
-        $liked_user=User::find($liked_user_id);
-        
+    public function add_to_favorites(Request $request){
+
+        $user = auth()->user();
+        $liked_user=User::find($request->liked_user_id);
+
         if ($user && $liked_user) {
     
-            $likes = new likes;
+            $likes = new Likes;
             $likes->user_id = $user->id;
             $likes->liked_user_id = $liked_user->id;
 
             $likes->save();
   
-            return redirect('');
+            return "success";
         } else {
-
-            return redirect('');
+            return "failure";
         }
     }
+
         
     public function add_to_blocks($user_id, $blocked_user_id){
         $user = User::find($user_id);
